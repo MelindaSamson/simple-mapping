@@ -1,0 +1,14 @@
+PODS:
+  - SimpleMapping (0.1.0)
+
+DEPENDENCIES:
+  - SimpleMapping (from `../`)
+
+EXTERNAL SOURCES:
+  SimpleMapping:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SimpleMapping: fc81f0d6d825fa3ff90c337c39b4376f911db80c
+
+COCOAPODS: 0.35.0
