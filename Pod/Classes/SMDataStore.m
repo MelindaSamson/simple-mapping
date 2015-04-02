@@ -125,5 +125,23 @@
     return context;
 }
 
+- (NSArray*)fetchOnMainThreadWithEntityName:(NSString*)entityName {
+    return [self fetchWithEntityName:entityName context:[self managedObjectContextForMainThread]];
+}
+
+- (NSArray*)fetchWithEntityName:(NSString*)entityName context:(NSManagedObjectContext*)context {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    request.entity = entityDesc;
+    
+    NSError *e = nil;
+    NSArray *existingObjects = [context executeFetchRequest:request error:&e];
+    if(e) {
+        NSLog(@"%@", e.description);
+    }
+    
+    return existingObjects;
+}
 
 @end

@@ -9,6 +9,7 @@
 #import "SMTestCases.h"
 #import "SMMockResponseContainer.h"
 #import <SimpleMapping/SMObjectMapper.h>
+#import "Article.h"
 
 @implementation SMTestCases
 
@@ -23,7 +24,14 @@
     
     [OBJECTMAPPER  mapClassname:@"Article" data:data success:^{
         
-        XCTAssert(YES);
+        NSArray *articles = [DATASTORE fetchOnMainThreadWithEntityName:@"Article"];
+        
+        XCTAssert(articles.count == 2);
+        
+        Article *article = articles.firstObject;
+        
+        XCTAssert(article.tags.count == 2);
+        
         [dataMapExpectation fulfill];
     } error:^(NSError *error) {
         
@@ -32,7 +40,7 @@
     }];
     
     [self waitForExpectationsWithTimeout:10000 handler:^(NSError *error) {
-        
+ 
     }];
     
 }

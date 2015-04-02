@@ -15,8 +15,9 @@
 
 + (id)sharedInstance;
 - (NSURL *)applicationDocumentsDirectory;
-
-
+// Helper methods
+- (NSArray*)fetchOnMainThreadWithEntityName:(NSString*)entityName;
+- (NSArray*)fetchWithEntityName:(NSString*)entityName context:(NSManagedObjectContext*)context;
 #define DATASTORE ((SMDataStore *)[SMDataStore sharedInstance])
 
 @end
