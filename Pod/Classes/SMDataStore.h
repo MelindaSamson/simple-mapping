@@ -14,8 +14,8 @@
 @property(nonatomic, strong) NSString *databaseName;
 
 + (id)sharedInstance;
-- (NSURL *)applicationDocumentsDirectory;
 // Helper methods
+- (NSURL *)applicationDocumentsDirectory;
 - (NSArray*)fetchOnMainThreadWithEntityName:(NSString*)entityName;
 - (NSArray*)fetchWithEntityName:(NSString*)entityName context:(NSManagedObjectContext*)context;
 #define DATASTORE ((SMDataStore *)[SMDataStore sharedInstance])
