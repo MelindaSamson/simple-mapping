@@ -16,13 +16,7 @@ To run the test, clone the repo, and run `pod install` from the Example director
 
 ## Installation
 
-SimpleMapping is available through [CocoaPods](http://cocoapods.org) or [Set up manually](#setting-up-manually)
-
-To install, simply add the following line to your Podfile:
-
-```ruby
-pod "SimpleMapping"
-```
+SimpleMapping is available through setting up manually.
 
 ## Usage
 
