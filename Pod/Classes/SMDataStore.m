@@ -1,5 +1,3 @@
-
-
 #import "SMDataStore.h"
 
 @implementation SMDataStore {
@@ -19,7 +17,6 @@
             sharedInstance = [[self alloc] init];
         });
     }
-    
     return sharedInstance;
 }
 
@@ -33,6 +30,16 @@
 
 - (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (void)setManagedObjectModelFilename:(NSString *)managedObjectModelFilename {
+    _managedObjectModelFilename = managedObjectModelFilename;
+    if(self.managedObjectModel) {
+        NSLog(@"Model is valid");
+    } else {
+        NSLog(@"Model not valid");
+    }
+    
 }
 
 - (NSManagedObjectModel *)managedObjectModel {
@@ -52,6 +59,9 @@
     }
     
     NSURL *modelURL = [[NSBundle bundleForClass:[self class]] URLForResource:modelFilename withExtension:@"momd"];
+    NSAssert(modelURL, @"Model URL is nil");
+    //NSURL *modelURL = [[NSBundle mainBundle] URLForResource:modelFilename withExtension:@"momd"];
+
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -71,6 +81,7 @@
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", _databaseName]];
+    NSLog(@"DATABASE URL:%@", storeURL.absoluteString);
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     //////////////////////////////////
@@ -86,7 +97,7 @@
         dict[NSLocalizedFailureReasonErrorKey] = failureReason;
         dict[NSUnderlyingErrorKey] = error;
         error = [NSError errorWithDomain:@"SMDataStore" code:9999 userInfo:dict];
-        // Replace this with code to handle the error appropriately.
+        //TODO Replace this with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
@@ -99,6 +110,7 @@
 - (NSManagedObjectContext *)managedObjectContextForMainThread {
     // Returns the managed object context for main thread
     if (_managedObjectContext != nil) {
+        
         return _managedObjectContext;
     }
     
@@ -108,6 +120,7 @@
     }
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+
     return _managedObjectContext;
 }
 
@@ -123,25 +136,6 @@
     [context setParentContext:[self managedObjectContextForMainThread]];
     
     return context;
-}
-
-- (NSArray*)fetchOnMainThreadWithEntityName:(NSString*)entityName {
-    return [self fetchWithEntityName:entityName context:[self managedObjectContextForMainThread]];
-}
-
-- (NSArray*)fetchWithEntityName:(NSString*)entityName context:(NSManagedObjectContext*)context {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
-    request.entity = entityDesc;
-    
-    NSError *e = nil;
-    NSArray *existingObjects = [context executeFetchRequest:request error:&e];
-    if(e) {
-        NSLog(@"%@", e.description);
-    }
-    
-    return existingObjects;
 }
 
 @end

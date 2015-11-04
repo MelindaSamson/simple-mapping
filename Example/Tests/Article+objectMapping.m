@@ -11,7 +11,7 @@
 @implementation Article (objectMapping)
 
 +(NSDictionary *)objectMapping {
-    return @{kPrimaryKey : @"guid",
+    return @{kSMPrimaryKey : @"guid",
              @"guid": @"ArticleId",
              @"title" : @"ArticleTitle",
              @"author" : @"ArticleAuthor",
