@@ -24,8 +24,7 @@
     
     [OBJECTMAPPER  mapClassname:@"Article" data:data success:^{
         
-        NSArray *articles = [DATASTORE fetchOnMainThreadWithEntityName:@"Article"];
-        
+        NSArray *articles = [OBJECTMAPPER fetchObjectsOnMainThreadWithClassname:@"Article" predicate:nil];
         XCTAssert(articles.count == 2);
         
         Article *article = articles.firstObject;
@@ -42,7 +41,6 @@
     [self waitForExpectationsWithTimeout:10000 handler:^(NSError *error) {
  
     }];
-    
 }
 
 @end

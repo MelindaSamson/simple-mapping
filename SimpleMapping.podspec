@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "SimpleMapping"
-  s.version          = "0.1.0"
+  s.version          = "1.0.0"
   s.summary          = "A simple library for mapping server responses to NSManagedObjects."
   s.description      = <<-DESC
                        An optional longer description of SimpleMapping

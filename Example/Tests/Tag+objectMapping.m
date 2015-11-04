@@ -11,7 +11,7 @@
 @implementation Tag (objectMapping)
 
 +(NSDictionary *)objectMapping {
-    return @{kPrimaryKey : @"guid",
+    return @{kSMPrimaryKey : @"guid",
              @"guid" : @"TagId",
              @"text" : @"TagText"
              };

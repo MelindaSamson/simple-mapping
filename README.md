@@ -9,6 +9,7 @@ SimpleMapping is an easy to use library for mapping REST API responses to Core D
 - [x] Configurable dateformatter for dates
 - [x] Built in typechecking
 - [x] Easy to configure data mappings
+- [x] Configurable update key and update block
 
 ## Example
 
@@ -48,7 +49,7 @@ The mapper will map every relationships recursively. The main thread context can
 
 ## Author
 
-MelindaSamson, melinda.samson.it@gmail.com
+Melinda Samson, melinda.samson.it@gmail.com
 
 ## License
 
