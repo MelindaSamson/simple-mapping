@@ -21,7 +21,10 @@ SimpleMapping is available through setting up manually.
 
 ## Usage
 
-Every ManagedObject subclasses used must implement the <ObjectMapping> protocol. It can be accomplished in different ways, but the most convinient way is to create a category for the class and implement the protocol in that category. That way when the ManagedObject subclasses are regenerated from the model the mapping won't be lost.
+Every ManagedObject subclasses used must implement the ObjectMapping protocol. It can be accomplished in different ways, but the most convinient way is to create a category for the class and implement the protocol in that category. That way when the ManagedObject subclasses are regenerated from the model the mapping won't be lost.
+
+Update:
+From above XCode 7 the managed object class generation has changed, so other design options can become useful.
 
 The classes have to return an NSDictionary* containing the mapping where the keys are the properties of the ManagedObject subclass and the values are the keys of the response object to be mapped.
 
