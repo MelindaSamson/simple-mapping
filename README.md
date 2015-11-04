@@ -7,7 +7,7 @@ SimpleMapping is an easy to use library for mapping REST API responses to Core D
 - [x] Preconfigured Core Data stack
 - [x] Automated relationship handling
 - [x] Configurable dateformatter for dates
-- [x] Built in typechecking
+- [x] Built in type checking
 - [x] Easy to configure data mappings
 - [x] Configurable update key and update block
 
@@ -17,17 +17,11 @@ To run the test, clone the repo, and run `pod install` from the Example director
 
 ## Installation
 
-SimpleMapping is available through [CocoaPods](http://cocoapods.org) or [Set up manually](#setting-up-manually)
-
-To install, simply add the following line to your Podfile:
-
-```ruby
-pod "SimpleMapping"
-```
+SimpleMapping is available through setting up manually.
 
 ## Usage
 
-Every ManagedObject subclasses used must implement the ObjectMapper protocol. It can be accomplished in different ways, but the most convinient way is to create a category for the class and implement the protocol in that category. That way when the ManagedObject subclasses are regenerated from the model the mapping won't be lost.
+Every ManagedObject subclasses used must implement the <ObjectMapping> protocol. It can be accomplished in different ways, but the most convinient way is to create a category for the class and implement the protocol in that category. That way when the ManagedObject subclasses are regenerated from the model the mapping won't be lost.
 
 The classes have to return an NSDictionary* containing the mapping where the keys are the properties of the ManagedObject subclass and the values are the keys of the response object to be mapped.
 
