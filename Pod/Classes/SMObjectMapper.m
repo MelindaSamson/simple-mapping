@@ -243,7 +243,7 @@ void SLog(NSString *formatString, ...) {
         id guid = [json valueForKeyPath:primaryRemoteKey];
         SLog(@"GUID: %@", guid);
         if(![guid isEqual:[NSNull null]] && guid != 0 && guid != nil) {
-            NSString *formatString = [primaryInfo[kSMClassName] isEqual:@"NSString"] ? @"%K like %@" : @"%@ = %@";
+            NSString *formatString = [primaryInfo[kSMClassName] isEqual:@"NSString"] ? @"%K like %@" : @"%K = %@";
             NSPredicate *predicate = [NSPredicate predicateWithFormat:formatString, primaryKey, guid];
             fetchRequest.predicate = predicate;
             
