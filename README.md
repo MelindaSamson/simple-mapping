@@ -53,7 +53,6 @@ Melinda Samson, melinda.samson.it@gmail.com
 SimpleMapping is available under the MIT license. See the LICENSE file for more info.
 
 
-## Usage
 
 
 
