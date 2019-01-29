@@ -46,7 +46,7 @@ The mapper will map every relationships recursively. The main thread context can
 
 ## Author
 
-Melinda Samson, melinda.samson.it@gmail.com
+Melinda Samson, melinda.samson@butterflyinformatics.co.uk
 
 ## License
 
